@@ -1,25 +1,26 @@
 """
-FILE: bwa_frontend.py
+FILE: app.py
 
 KYA KARTA HAI:
-Ye file backward-compatibility wrapper hai jo modularized `src/blog_agent` package se `run_app()` call karti hai.
+Ye file project ka main root Streamlit entry point hai (`streamlit run app.py`).
 
 RESPONSIBILITY:
-Purani command `streamlit run bwa_frontend.py` ko continue work karne dena without breaking.
+`src/blog_agent/ui/app.py` se `run_app()` call karke BlogAgent application ko launch karna.
 
 KON USE KARTA HAI:
-- User / Legacy scripts (`streamlit run bwa_frontend.py`)
+- Developer / User (`streamlit run app.py`)
 
 DEPENDENCIES:
 - src.blog_agent.ui.app -> run_app
 
 REVISION:
-bwa_frontend.py = Backward compatibility wrapper for frontend execution.
+app.py = Primary application startup script.
 """
 
 import sys
 from pathlib import Path
 
+# Add src to sys.path if running as standalone script
 src_path = Path(__file__).resolve().parent / "src"
 if str(src_path) not in sys.path:
     sys.path.insert(0, str(src_path))
@@ -33,6 +34,6 @@ if __name__ == "__main__":
 # ============================================================
 # REVISION / CONNECTION MAP
 # ============================================================
-# User -> `streamlit run bwa_frontend.py` -> run_app() -> src/blog_agent/ui/app.py
-# Shortcut: bwa_frontend.py = Backward compatibility wrapper.
+# User -> `streamlit run app.py` -> run_app() -> BlogAgent UI
+# Shortcut: app.py = Primary entry point.
 # ============================================================
